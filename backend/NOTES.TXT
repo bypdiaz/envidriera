@@ -1,0 +1,101 @@
+🧭 🔥 ENVIDRIERA - ATAJOS CLAVE (BACKEND)
+
+Guardate esto. Literal.
+
+🌐 📡 ENDPOINTS (TU API)
+🧑‍💻 Registro
+POST http://localhost:3000/api/users/register
+🔐 Login
+POST http://localhost:3000/api/users/login
+👤 Perfil (protegido)
+GET http://localhost:3000/api/users/profile
+📦 📤 BODY (POSTMAN)
+Registro
+{
+  "name": "Diego",
+  "email": "diego@test.com",
+  "password": "123456"
+}
+Login
+{
+  "email": "diego@test.com",
+  "password": "123456"
+}
+🔑 🔐 TOKEN (MUY IMPORTANTE)
+Header en Postman:
+Authorization: Bearer TU_TOKEN
+
+👉 Siempre con:
+
+Bearer + espacio + token
+🧪 🧠 FLUJO COMPLETO (MENTAL)
+Registro → DB
+Login → Token
+Token → Middleware
+Middleware → Acceso
+⚙️ 🖥️ COMANDOS QUE USÁS SIEMPRE
+Levantar servidor
+npm run dev
+Reiniciar nodemon
+rs
+🗄️ 🧠 MYSQL
+Ver tablas
+SHOW TABLES;
+Ver usuarios
+SELECT * FROM Users;
+Borrar todo
+TRUNCATE TABLE Users;
+🧠 🧩 ERRORES TÍPICOS (Y SIGNIFICADO)
+❌ 401
+
+👉 No autorizado
+
+contraseña incorrecta
+token inválido
+❌ 404
+
+👉 Ruta no existe
+
+❌ 500
+
+👉 Error en backend
+👉 mirar consola SIEMPRE
+
+❌ Token no proporcionado
+
+👉 No mandaste header
+
+❌ Token inválido
+
+👉 Token mal copiado o vencido
+
+🔐 🧠 SEGURIDAD
+Hash password
+bcrypt.hash(password, 10)
+Comparar password
+bcrypt.compare(password, user.password)
+Crear token
+jwt.sign(payload, secret, { expiresIn: '1h' })
+Verificar token
+jwt.verify(token, secret)
+🧠 📁 ESTRUCTURA DEL PROYECTO
+src/
+ ├── controllers/
+ ├── models/
+ ├── routes/
+ ├── middleware/
+ ├── config/
+ └── server.js
+🔥 💡 ATAJOS MENTALES IMPORTANTES
+
+👉 Si falla algo:
+
+¿Está corriendo el server?
+¿La URL está bien?
+¿El método es correcto (GET/POST)?
+¿El body está bien?
+¿El token está bien?
+👉 MIRAR CONSOLA
+
+1. Rutas específicas primero
+2. Rutas dinámicas después (/:id)
