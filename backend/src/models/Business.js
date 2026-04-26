@@ -27,9 +27,22 @@ const Business = sequelize.define('Business', {
 });
 
 const Product = require('./Product');
+const Post = require('./Post');
 
-// Relación
+// Relación con Product
 Business.hasMany(Product, { foreignKey: 'businessId' });
 Product.belongsTo(Business, { foreignKey: 'businessId' });
+
+// Relación con Post
+Business.hasMany(Post, {
+  foreignKey: 'businessId',
+  as: 'posts'
+});
+
+Post.belongsTo(Business, {
+  foreignKey: 'businessId',
+  as: 'business'
+});
+
 
 module.exports = Business;

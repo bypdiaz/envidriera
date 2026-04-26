@@ -22,7 +22,7 @@ function ProductCard({ product }) {
 
 const styles = {
   container: {
-    height: "calc(100vh - 60px)", // 🔥 resta navbar
+    padding: "10 px 0",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -44,7 +44,7 @@ const styles = {
   },*/
 
   card: {
-    width: "90%",
+    width: "100%",
     maxWidth: "400px",
     margin: "20px auto",
     backgroundColor: "#1a1a1a",

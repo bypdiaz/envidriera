@@ -61,7 +61,7 @@ function Profile() {
             const endpoint =
                 payload.role === "ADMIN"
                     ? "http://localhost:3000/api/businesses/all"
-                    : "http://localhost:3000/api/businesses/";
+                    : "http://localhost:3000/api/businesses/my";
 
             fetch(endpoint, {
                 headers: {

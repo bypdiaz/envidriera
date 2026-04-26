@@ -28,4 +28,8 @@ app.use('/api/products', productRoutes);
 
 app.use('/uploads', express.static('uploads'));
 
+const postRoutes = require("./routes/post.routes");
+
+app.use("/posts", postRoutes);
+
 module.exports = app;

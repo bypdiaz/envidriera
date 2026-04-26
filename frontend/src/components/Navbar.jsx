@@ -32,48 +32,65 @@ function Navbar() {
 
   return (
   <nav style={styles.nav}>
-    <h2 style={styles.logo}>Envidriera</h2>
 
-    <div style={styles.links}>
+    {/* 🔝 FILA SUPERIOR */}
+    <div style={styles.topBar}>
+
+      {/* LOGO */}
+      <div style={styles.logo}>
+        Envidriera
+      </div>
+
+      {/* BUSCADOR */}
+      <input
+        type="text"
+        placeholder="Buscar productos..."
+        style={styles.search}
+      />
+
+      {/* USUARIO */}
+      <div style={styles.userSection}>
+        {!user && (
+          <>
+            <Link to="/login" style={styles.link}>Login</Link>
+            <Link to="/register" style={styles.link}>Register</Link>
+          </>
+        )}
+
+        {user && (
+          <>
+            <Link to="/profile" style={styles.userName}>
+              {user.email}
+            </Link>
+
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                window.location.href = "/";
+              }}
+            >
+              Logout
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+
+    {/* 🔽 FILA INFERIOR (MENÚ) */}
+    <div style={styles.menuBar}>
+
       <Link to="/" style={styles.link}>Home</Link>
-
-      {!user && (
-        <>
-          <Link to="/login" style={styles.link}>Login</Link>
-          <Link to="/register" style={styles.link}>Register</Link>
-        </>
-      )}
+      <Link to="/feed" style={styles.link}>Feed</Link>
 
       {user && (user.role === "SELLER" || user.role === "ADMIN") && (
         <>
           <Link to="/create-business" style={styles.link}>Negocio</Link>
           <Link to="/create-product" style={styles.link}>Producto</Link>
-          
         </>
       )}
 
-      {user && (
-        <>
-    <Link to="/profile" style={styles.link}>Perfil</Link>
-
-        <button
-          onClick={() => {
-            localStorage.removeItem("token");
-            window.location.href = "/";
-          }}
-        >
-          Logout
-        </button>
-        </>
-      )}
     </div>
 
-    {user && (
-      <div style={styles.userInfo}>
-        <div>{user.email}</div>
-        <div>({user.role})</div>
-      </div>
-    )}
   </nav>
 );
 }
@@ -109,39 +126,62 @@ function Navbar() {
 const styles = {
   nav: {
     position: "fixed",
-    top: 0,                // 👈 volvemos arriba
-    left: "50%",
-    transform: "translateX(-50%)", // 👈 centrado tipo app
+    top: 0,
+    left: 0,
     width: "100%",
-    maxWidth: "500px",
     backgroundColor: "#000",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "10px 15px",
     borderBottom: "1px solid #333",
-    zIndex: 1000,
-    height: "60px"
-    
+    zIndex: 1000
   },
+
+  topBar: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "10px 20px",
+    gap: "20px"
+  },
+
   logo: {
     color: "#00ff99",
-    fontSize: "16px"
+    fontWeight: "bold",
+    fontSize: "18px",
+    minWidth: "120px"
   },
-  links: {
+
+  search: {
+    flex: 1,
+    padding: "8px",
+    borderRadius: "6px",
+    border: "none",
+    outline: "none"
+  },
+
+  userSection: {
     display: "flex",
     gap: "10px",
-    alignItems: "center"
+    alignItems: "center",
+    minWidth: "150px",
+    justifyContent: "flex-end"
   },
+
+  userName: {
+    color: "#00ff99",
+    textDecoration: "none",
+    fontSize: "14px"
+  },
+
+  menuBar: {
+    display: "flex",
+    gap: "20px",
+    padding: "10px 20px",
+    borderTop: "1px solid #222"
+  },
+
   link: {
     color: "white",
     textDecoration: "none",
-    fontSize: "13px"
-  },
-  userInfo: {
-    color: "#aaa",
-    fontSize: "11px",
-    textAlign: "right"
+    fontSize: "14px"
   }
 };
 

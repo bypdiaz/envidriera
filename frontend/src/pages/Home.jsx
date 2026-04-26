@@ -15,18 +15,26 @@ function Home() {
   }, []);
 
   return (
-    <div style={{ paddingTop: "70px" }}>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div style={{ paddingTop: "20px", paddingBottom: "20px" }}>
+      <div style={styles.grid}>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 }
 
 const styles = {
   container: {
-  scrollSnapType: "y mandatory"
-}
+    scrollSnapType: "y mandatory"
+  },
+
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+    gap: "20px"
+  }
 };
 
 export default Home;

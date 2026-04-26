@@ -6,6 +6,6 @@ export const createBusiness = async (data) => {
 };
 
 export const getMyBusinesses = async () => {
-  const response = await API.get("/businesses"); 
+  const response = await API.get("/businesses/my"); 
   return response.data;
 };
